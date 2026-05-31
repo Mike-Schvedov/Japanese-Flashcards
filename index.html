@@ -10,13 +10,26 @@
 
   <div id="type-label">—</div>
   <div id="character">—</div>
+<div class="btn-row">
   <button id="next-btn" onclick="next()">Next</button>
+  <button id="show-btn" onclick="show()">Show</button>
+</div>
 
   <script src="data.js"></script>
   <script>
     const types = ["hiragana", "katakana", "kanji"];
 	let typeIndex = Math.floor(Math.random() * types.length);
 	let lastCharIndex = -1;
+
+	function show() {
+	  const pool = characters.filter(c => c.type === types[(typeIndex - 1) % types.length]);
+	  const pair = pool[lastCharIndex].pair;
+	  const el = document.getElementById("character");
+	  el.textContent = pair;
+	  el.style.fontSize = pair.length > 3 ? "15vw" : "30vw";
+	  document.getElementById("show-btn").disabled = true;
+	}
+
 
 	function next() {
 	  const currentType = types[typeIndex % types.length];
@@ -31,6 +44,9 @@
 
 	  document.getElementById("character").textContent = pool[idx].char;
 	  document.getElementById("type-label").textContent = currentType;
+	  
+	   document.getElementById("show-btn").disabled = false;
+	   document.getElementById("character").style.fontSize = "30vw";
 	}
 
 next();

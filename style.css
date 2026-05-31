@@ -28,9 +28,17 @@ body {
   font-size: 30vw;
   line-height: 1;
   margin-bottom: 4rem;
+  max-width: 90vw;
+  text-align: center;
+  word-break: break-word;
 }
 
-#next-btn {
+.btn-row {
+  display: flex;
+  gap: 1rem;
+}
+
+#next-btn, #show-btn {
   font-size: 1.4rem;
   padding: 1rem 3rem;
   border: 2px solid #fff;
@@ -42,7 +50,13 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-#next-btn:active {
+#next-btn:active, #show-btn:active {
   background: #fff;
   color: #111;
+}
+
+#show-btn:disabled {
+  border-color: #444;
+  color: #444;
+  cursor: default;
 }
