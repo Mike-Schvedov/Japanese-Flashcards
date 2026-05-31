@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JP Flashcards</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="type-label">—</div>
+  <div id="character">—</div>
+  <button id="next-btn" onclick="next()">Next</button>
+
+  <script src="data.js"></script>
+  <script>
+    const types = ["hiragana", "katakana", "kanji"];
+	let typeIndex = Math.floor(Math.random() * types.length);
+	let lastCharIndex = -1;
+
+	function next() {
+	  const currentType = types[typeIndex % types.length];
+	  const pool = characters.filter(c => c.type === currentType);
+
+	  let idx;
+	  do { idx = Math.floor(Math.random() * pool.length); }
+	  while (idx === lastCharIndex && pool.length > 1);
+
+	  lastCharIndex = idx;
+	  typeIndex++;
+
+	  document.getElementById("character").textContent = pool[idx].char;
+	  document.getElementById("type-label").textContent = currentType;
+	}
+
+next();
+  </script>
+
+</body>
+</html>
